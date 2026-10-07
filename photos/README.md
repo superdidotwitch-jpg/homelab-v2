@@ -16,6 +16,10 @@ Pictures of the real build, plus the planning sketches it started from.
 
 *Lower shelves, from the front.* Left to right: the DNS box (the Raspberry Pi in its red and white case), the five-port switch, and the hypervisor mini PC. The power strip takes up the bottom.
 
+![The dashboard on the tablet](dashboard-on-tablet-2026-10-07.jpg)
+
+*The dashboard on the tablet.* It sits on the top shelf and shows the whole lab at a glance: both DNS boxes with their blocked counts, the router, the hypervisor with its load, and the NAS. A green dot means the service answered.
+
 ## Where it started
 
 These are planning sketches from July 2026, before the rack, the NAS and the hypervisor existed. Back then the whole "homelab" was a router, a switch and one Raspberry Pi on a small stand on the TV shelf. They are here to show the starting point, not the current setup.
@@ -39,7 +43,3 @@ These are planning sketches from July 2026, before the rack, the NAS and the hyp
 ![Shelf layout, July 2026](plan-2026-07-shelf-layout.jpg)
 
 *Shelf layout.* Fitting it all onto one TV shelf, measured to the centimetre. Running out of room here is part of why the rack happened.
-
-## Still to add
-
-- A straight-on picture of the dashboard on the tablet
