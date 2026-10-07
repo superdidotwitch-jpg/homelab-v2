@@ -13,6 +13,7 @@ All IP addresses, hostnames, API keys and passwords in these docs are **placehol
 | [docs/hardware.md](docs/hardware.md) | The physical build: rack, hypervisor host, NAS, Pi-hole box, UPS, and why each thing was picked |
 | [docs/network.md](docs/network.md) | Topology, DNS/ad-blocking with Pi-hole (primary + secondary), remote access over Tailscale |
 | [docs/proxmox.md](docs/proxmox.md) | The Proxmox VE host: what runs where, and the two hardware/config gotchas that actually caused outages |
+| [docs/firewall-lab.md](docs/firewall-lab.md) | An OPNsense firewall VM with its own lab network, and a first rule that keeps the lab out of the home network |
 | [docs/web-server.md](docs/web-server.md) | A small nginx container, and what it ended up being useful for |
 | [docs/nextcloud.md](docs/nextcloud.md) | The personal cloud: Nextcloud in Docker with its data on the NAS |
 | [docs/help-desk-and-remote-support.md](docs/help-desk-and-remote-support.md) | A self-hosted ticketing system, and remote control of a Windows laptop from inside and outside the house |
@@ -51,7 +52,7 @@ The point isn't that anyone needs this exact stack. Most homelab write-ups eithe
 Written down on purpose, so the repo doesn't read as more finished than it is:
 
 - There is no full second copy of the NAS outside the NAS. Media and the machine backups exist in one place only.
-- A firewall VM, VLANs and a home automation VM are planned and not started.
+- VLANs on the firewall lab and a home automation VM are planned and not started.
 
 ## Related
 
