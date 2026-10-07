@@ -52,7 +52,6 @@ Written down on purpose, so the repo doesn't read as more finished than it is:
 - The restore test for the DNS box's nightly backup has not been run yet.
 - There is no full second copy of the NAS outside the NAS. Media and the machine backups exist in one place only.
 - A firewall VM, VLANs and a home automation VM are planned and not started.
-- The [photos page](photos/README.md) exists but is still empty.
 
 ## Related
 
