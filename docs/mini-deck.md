@@ -15,7 +15,7 @@ Everything comes from F-Droid, so the phone never needs an account:
 - **Termux** for a real Linux terminal
 - **Jellyfin** for the media server
 - **WiFiAnalyzer** and **Port Authority** as a small network toolkit
-- **NewPipe-style video app** for watching without an account
+- **NewTube** for video
 - A home screen shortcut to the homelab dashboard
 
 No offline maps or offline encyclopedia on this one. Another device in the house already does that job, and this one has a different purpose.
