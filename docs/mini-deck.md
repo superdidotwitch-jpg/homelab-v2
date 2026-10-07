@@ -27,11 +27,10 @@ No offline maps or offline encyclopedia on this one. Another device in the house
 - Media in bed
 - Logging in to the homelab's servers over SSH, straight from Termux (installed with `pkg install openssh`)
 
-## Two things worth knowing
+## Three things worth knowing
 
 - **The keyboard would not show up in Bluetooth at first.** It ships in 2.4G dongle mode (green light). It only appears on the phone after switching it to Bluetooth mode (blue light).
 - **The keyboard layout is set on the phone, not on the keyboard.** Adding the matching language under the on-screen keyboard's input languages made the symbols land where the keycaps say.
-
 - **The @ key would not type in Termux**, which gets in the way of `ssh user@host`. The same command without it: `ssh -l user host`.
 
 ## Planned
