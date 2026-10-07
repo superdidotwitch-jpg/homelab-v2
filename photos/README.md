@@ -8,6 +8,14 @@ Pictures of the real build, plus the planning sketches it started from.
 
 *7 October 2026.* The finished rack. Top shelf: router and NAS. Below: switch, DNS box and the hypervisor mini PC. The UPS sits on the floor to the left, because the shelves are too shallow for it.
 
+![Top shelf from above](rack-top-shelf-2026-10-07.jpg)
+
+*Top shelf, from above.* The router in the middle, the NAS on the right, and the tablet standing at the back showing the dashboard. The UPS is on the floor to the left with the smart home hub on top of it.
+
+![Lower shelves from the front](rack-lower-shelves-2026-10-07.jpg)
+
+*Lower shelves, from the front.* Left to right: the DNS box (the Raspberry Pi in its red and white case), the five-port switch, and the hypervisor mini PC. The power strip takes up the bottom.
+
 ## Where it started
 
 These are planning sketches from July 2026, before the rack, the NAS and the hypervisor existed. Back then the whole "homelab" was a router, a switch and one Raspberry Pi on a small stand on the TV shelf. They are here to show the starting point, not the current setup.
@@ -34,5 +42,4 @@ These are planning sketches from July 2026, before the rack, the NAS and the hyp
 
 ## Still to add
 
-- Close-ups of each shelf
-- The dashboard on the tablet
+- A straight-on picture of the dashboard on the tablet
