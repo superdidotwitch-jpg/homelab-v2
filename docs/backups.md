@@ -39,9 +39,21 @@ The rule used here: **never test a restore on the live machine**, especially any
 2. Confirm it actually comes up and serves what it is supposed to.
 3. Destroy the throwaway copy. The real machine was never touched.
 
-This was done with the web server container: its backup was restored under a new ID, the copy picked up its own address from DHCP, it served the same page and images as the original, and then it was destroyed. A restore to a new ID takes a couple of minutes in Proxmox and it is the only way to know a backup is good before it is needed for real.
+This has been done twice.
+
+**A Proxmox machine backup.** Done with the web server container: its backup was restored under a new ID, the copy picked up its own address from DHCP, it served the same page and images as the original, and then it was destroyed. A restore to a new ID takes a couple of minutes in Proxmox and it is the only way to know a backup is good before it is needed for real.
+
+**The DNS box's nightly backup.** The box is a physical single-board computer, not a VM, so there is no restore-to-new-ID button for it. The test instead:
+
+1. On a different machine that already runs Docker, unpack last night's archive from the NAS into a scratch folder.
+2. Start a throwaway uptime monitor container from the unpacked data, on a spare port.
+3. Open it in a browser and log in with the real account.
+4. Delete the container and the scratch folder.
+
+Result: all 12 monitors came back, with their history, showing as up. The throwaway copy was a newer major version than the one on the box, so it spent about three minutes converting the old database first. That turned out to be a useful second finding: the backup is good enough to restore onto a newer version, not only the identical one.
+
+The Pi-hole half of that backup (the Teleporter export) had already been proven when the second Pi-hole was built from the same kind of export.
 
 ## Honest open items
 
-- The restore test for the DNS box's nightly backup (as opposed to the Proxmox machine backups) has not been run yet. The plan is the same as above: restore it into a throwaway container, never onto the box itself.
 - RAID 1 is not a backup, and the NAS is still a single location. A full second copy on a separate drive, including the machine backups and the media, is planned and not done.
