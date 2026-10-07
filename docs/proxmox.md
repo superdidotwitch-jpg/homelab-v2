@@ -5,7 +5,7 @@
 One Proxmox VE host carries everything:
 
 - **A general-purpose Linux VM** running the media/personal-cloud stack: a media server (Jellyfin) with hardware-accelerated transcoding via the host's integrated GPU, a torrent client for pulling content in, and a self-hosted personal cloud (Nextcloud) for file sync/backup, all pointed at the NAS for storage rather than local disk.
-- **A lightweight container** running a small web server (nginx), used for simple internal hosting needs (serving a couple of static assets for a dashboard, for instance) — overkill to spin up a full VM for.
+- **A lightweight container** running a small web server (nginx), used for simple internal hosting needs (serving a couple of static assets for a dashboard, for instance), overkill to spin up a full VM for.
 - **A second lightweight container** running the secondary Pi-hole instance described in [network.md](network.md).
 - **A "fun/experimentation" VM**, kept deliberately separate from anything that needs to be reliable, for trying things that might break.
 
@@ -19,7 +19,7 @@ On this class of tiny business PC, Intel VT-x (hardware virtualization) ships **
 
 ### 2. NIC hanging under load
 
-Symptom: the whole host became unreachable for a few minutes — every service on it dropped — while the OS itself stayed up and recovered on its own shortly after. The Proxmox system log showed the onboard NIC driver repeatedly logging a "hardware unit hang" every couple of seconds.
+Symptom: the whole host became unreachable for a few minutes, every service on it dropped, while the OS itself stayed up and recovered on its own shortly after. The Proxmox system log showed the onboard NIC driver repeatedly logging a "hardware unit hang" every couple of seconds.
 
 Cause: a known issue with the onboard Intel NIC driver (`e1000e`) and certain hardware offload features (TSO/GSO/GRO) under sustained load.
 
@@ -33,6 +33,6 @@ Verify with `ethtool -k <your-nic-name> | grep offload`. To make it survive a re
 
 ## Other things worth knowing
 
-- If a VM's hostname resolves to a stale IP in Proxmox's own System → Hosts page after you re-address anything, fix it there directly — it won't fix itself and can cause confusing cluster/name-resolution issues later.
-- Set "Start at boot" on anything that actually needs to come back up automatically after a host reboot — it's off by default per VM/container, and it's easy to forget until a reboot leaves something down that you have to notice and start by hand.
+- If a VM's hostname resolves to a stale IP in Proxmox's own System → Hosts page after you re-address anything, fix it there directly, it won't fix itself and can cause confusing cluster/name-resolution issues later.
+- Set "Start at boot" on anything that actually needs to come back up automatically after a host reboot, it's off by default per VM/container, and it's easy to forget until a reboot leaves something down that you have to notice and start by hand.
 - Pasting into the Proxmox web-based Shell (noVNC) can inject junk escape characters on some setups. If a pasted command looks mangled, clear the line and either type it by hand or use the terminal's right-click paste instead of a keyboard shortcut.

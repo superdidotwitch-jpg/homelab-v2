@@ -1,25 +1,47 @@
 # Backups
 
+## The model
+
+Everything backs up to the NAS, once. A small USB stick plugged into the NAS covers the NAS's own settings and the smallest, most important backups. No redundant second copies of things that are already on the NAS, for now. A full second copy on a bigger separate drive is the next step and is not done yet.
+
 ## What gets backed up
 
-- **Proxmox-level backups**: a scheduled Proxmox backup job covers every VM and container on the hypervisor host, written to the NAS over SMB/CIFS (added as a Proxmox storage target, content type "Backup"). Selection mode is set to "All," specifically so a newly created VM or container is automatically included going forward instead of being silently left out until someone remembers to add it.
-- **DNS box backup**: the DNS/ad-blocking box runs its own nightly backup, outside of Proxmox (it isn't a VM) — a small cron job that exports the Pi-hole configuration and tars up the other self-hosted app data on that box, then copies both to the NAS, keeping a rolling window of the most recent copies rather than keeping everything forever.
-- **Router configuration**: periodically export the router's settings file by hand and drop it in the personal cloud (see below) so a router replacement doesn't mean reconfiguring everything from memory.
+| What | How | When | Kept |
+|---|---|---|---|
+| Every VM and container on the hypervisor | Proxmox backup job to the NAS over SMB/CIFS (a Proxmox storage target with content type "Backup") | Weekly, Sunday 01:00 | Last 3 |
+| The hypervisor host's own settings | Small nightly job on the host, copied to the NAS | Nightly, 02:30 | Recent copies |
+| DNS box (Pi-hole export plus the app data for the dashboard, the uptime monitor and Unbound) | Cron job on the box: Pi-hole Teleporter export plus a tar of the app data, copied to the NAS | Nightly, 03:30 | Newest 14 |
+| Daily-driver single-board computer (home folder) | Copy to the NAS. An hourly check runs it only when the machine is on the home network | Daily, when at home | Newest 7 |
+| NAS settings plus the small backups above | NAS backup task to a USB stick that stays plugged into the NAS | Nightly, 04:00 | Latest |
+| Router configuration | Manual export of the router's settings file, uploaded to the personal cloud | After router changes | Latest |
 
-## Where backups land
+Notes on a few of these:
 
-Everything above lands in one place on the NAS, so there's a single location to point a second, off-site copy at later rather than several scattered backup locations.
+- The Proxmox job's selection mode is "All" on purpose, so a newly created VM or container is included automatically instead of being silently left out until someone remembers to add it.
+- The uptime monitor is paused for a few seconds while the DNS box backup runs, so its database is copied in a consistent state.
+- The times are staggered so that each job's output already exists when the next one picks it up: machines, then host settings, then the DNS box, then the stick.
+- The router export and the NAS settings export are manual snapshots. They go stale the moment something changes, so they get redone after any change to the router or the NAS.
+
+## The USB stick, and what did not fit
+
+The only spare drive available was a 3.7 GB stick that used to be the Proxmox installer. That is tiny, so it only holds what is small and painful to lose: the personal cloud's data, the DNS box backups, the host settings and the NAS settings export. The weekly machine backups and the media library do not fit and are not on it.
+
+Two things got in the way while setting it up:
+
+- **The NAS's app store said the NAS was not connected to the internet**, so the backup app could not be installed. The NAS was using the Pi-hole box for DNS like every other device. Setting the NAS's DNS to manual with public resolvers fixed it straight away, and it now stays that way. An infrastructure device that has to reach its vendor for apps and updates is a reasonable thing to leave off the ad-blocker.
+- **"Backup between storage pools" refused** with a message that the device only has one storage pool. A two-bay NAS in RAID 1 is one pool. The option that works is a backup task with the external USB drive as the destination.
 
 ## Restore testing
 
-The rule used here: **never test a restore on the live machine**, especially anything the rest of the house actually depends on (DNS being the obvious one). Instead:
+The rule used here: **never test a restore on the live machine**, especially anything the rest of the house depends on (DNS being the obvious one). Instead:
 
-1. Restore the backup as a *new*, throwaway VM/container with a different ID/name.
-2. Confirm it actually comes up and serves what it's supposed to.
+1. Restore the backup as a *new*, throwaway VM or container with a different ID.
+2. Confirm it actually comes up and serves what it is supposed to.
 3. Destroy the throwaway copy. The real machine was never touched.
 
-This is cheap to do (a Proxmox restore-to-new-ID takes a couple of minutes) and it's the only way to actually know a backup is good before you need it for real. A backup you've never restored from is a guess, not a backup.
+This was done with the web server container: its backup was restored under a new ID, the copy picked up its own address from DHCP, it served the same page and images as the original, and then it was destroyed. A restore to a new ID takes a couple of minutes in Proxmox and it is the only way to know a backup is good before it is needed for real.
 
-## Honest open item
+## Honest open items
 
-Restore testing for the DNS box's nightly backup specifically (as opposed to the Proxmox VM/container backups) hadn't been run yet as of this write-up — it's on the list, not done. Worth saying plainly rather than implying everything here has been fully verified.
+- The restore test for the DNS box's nightly backup (as opposed to the Proxmox machine backups) has not been run yet. The plan is the same as above: restore it into a throwaway container, never onto the box itself.
+- RAID 1 is not a backup, and the NAS is still a single location. A full second copy on a separate drive, including the machine backups and the media, is planned and not done.

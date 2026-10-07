@@ -6,13 +6,13 @@
 ISP ONT/router (bridge mode) → main router (DHCP, QoS, DNS handed out to clients) → unmanaged switch → everything else
 ```
 
-The ISP-provided router is kept only because some ISPs don't allow it to be fully removed from the line; putting it in bridge mode on one LAN port hands all real routing, DHCP and firewalling to a normal consumer router behind it. If your ISP lets you skip this step entirely, do that instead — it's one less device to manage.
+The ISP-provided router is kept only because some ISPs don't allow it to be fully removed from the line; putting it in bridge mode on one LAN port hands all real routing, DHCP and firewalling to a normal consumer router behind it. If your ISP lets you skip this step entirely, do that instead, it's one less device to manage.
 
 ## DNS and ad-blocking
 
 - Primary DNS: Pi-hole + Unbound on its own small box (see [hardware.md](hardware.md)). Unbound is a local recursive resolver, so DNS lookups aren't sent to a third-party DNS provider at all once it's warmed up.
-- Secondary DNS: a second Pi-hole instance, running as a lightweight container on the hypervisor host, loaded from the first instance's exported configuration (Pi-hole calls this "Teleporter"). The router hands out both addresses to DHCP clients — primary first, secondary as fallback — so a reboot or maintenance window on the primary box doesn't take down name resolution for the house.
-- A maintained public blocklist (e.g. one of the HaGeZi lists) is loaded in addition to Pi-hole's defaults. Expect the "percentage blocked" number to jump a lot once a real list is loaded — that's normal, not a sign something's broken.
+- Secondary DNS: a second Pi-hole instance, running as a lightweight container on the hypervisor host, loaded from the first instance's exported configuration (Pi-hole calls this "Teleporter"). The router hands out both addresses to DHCP clients, primary first, secondary as fallback, so a reboot or maintenance window on the primary box doesn't take down name resolution for the house.
+- A maintained public blocklist (e.g. one of the HaGeZi lists) is loaded in addition to Pi-hole's defaults. Expect the "percentage blocked" number to jump a lot once a real list is loaded, that's normal, not a sign something's broken.
 - **Gotcha:** if a Pi-hole instance's own upstream DNS setting still points at an old network's address after you re-IP anything, it will silently keep failing lookups. Check Settings → DNS → upstream servers any time you change your subnet.
 
 ## Remote access
