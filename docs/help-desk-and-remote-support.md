@@ -28,6 +28,4 @@ The laptop was tidied up before it was made remotely reachable:
 - All Windows Security protections on, updates installed, UAC on.
 - No extra user accounts, unused apps removed, startup trimmed, sign-in required on wake, Find my device on.
 
-Three things were left off on purpose, and it is more honest to list them than to pretend the checklist was complete: Secure Boot and memory integrity (both caused problems on this machine), and drive encryption (not offered on this edition of Windows on this hardware).
-
 The checks were then turned into three small PowerShell scripts (a health report, a hardening check and a temp cleanup), which live in their own repo: [powershell-toolkit](https://github.com/superdidotwitch-jpg/powershell-toolkit).

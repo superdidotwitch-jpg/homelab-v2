@@ -18,6 +18,7 @@ All IP addresses, hostnames, API keys and passwords in these docs are **placehol
 | [docs/help-desk-and-remote-support.md](docs/help-desk-and-remote-support.md) | A self-hosted ticketing system, and remote control of a Windows laptop from inside and outside the house |
 | [docs/backups.md](docs/backups.md) | What gets backed up, how, how often, and how restores are actually tested |
 | [docs/dashboard-and-monitoring.md](docs/dashboard-and-monitoring.md) | Homepage dashboard + Uptime Kuma + alerting, so there's one screen that shows if anything's down |
+| [docs/mini-deck.md](docs/mini-deck.md) | Side project: an old phone and a tiny keyboard as a pocket terminal for the homelab |
 | [docs/incidents.md](docs/incidents.md) | Every outage and odd failure so far, in date order: symptom, cause, fix |
 | [docs/build-log.md](docs/build-log.md) | The build day by day, from the first shelf to the current state |
 | [docs/lessons-learned.md](docs/lessons-learned.md) | What got ruled out and why, and the principles that guided the build |
