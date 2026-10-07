@@ -21,6 +21,7 @@ All IP addresses, hostnames, API keys and passwords in these docs are **placehol
 | [docs/incidents.md](docs/incidents.md) | Every outage and odd failure so far, in date order: symptom, cause, fix |
 | [docs/build-log.md](docs/build-log.md) | The build day by day, from the first shelf to the current state |
 | [docs/lessons-learned.md](docs/lessons-learned.md) | What got ruled out and why, and the principles that guided the build |
+| [photos/](photos/README.md) | Pictures of the real build |
 
 ## Rough shape of the thing
 
@@ -51,7 +52,7 @@ Written down on purpose, so the repo doesn't read as more finished than it is:
 - The restore test for the DNS box's nightly backup has not been run yet.
 - There is no full second copy of the NAS outside the NAS. Media and the machine backups exist in one place only.
 - A firewall VM, VLANs and a home automation VM are planned and not started.
-- No photos or screenshots in this repo yet.
+- The [photos page](photos/README.md) exists but is still empty.
 
 ## Related
 
