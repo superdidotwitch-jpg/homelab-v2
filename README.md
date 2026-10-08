@@ -20,6 +20,7 @@ All IP addresses, hostnames, API keys and passwords in these docs are **placehol
 | [docs/backups.md](docs/backups.md) | What gets backed up, how, how often, and how restores are actually tested |
 | [docs/dashboard-and-monitoring.md](docs/dashboard-and-monitoring.md) | Homepage dashboard + Uptime Kuma + alerting, so there's one screen that shows if anything's down |
 | [docs/mini-deck.md](docs/mini-deck.md) | Side project: an old phone, a tiny keyboard and a LoRa radio as a pocket terminal for the homelab |
+| [docs/ai-operator.md](docs/ai-operator.md) | Planned: one small container that coordinates several cloud AI agents, with a task queue, a log and human approval before anything happens |
 | [docs/incidents.md](docs/incidents.md) | Every outage and odd failure so far, in date order: symptom, cause, fix |
 | [docs/build-log.md](docs/build-log.md) | The build day by day, from the first shelf to the current state |
 | [docs/lessons-learned.md](docs/lessons-learned.md) | What got ruled out and why, and the principles that guided the build |
@@ -53,6 +54,7 @@ Written down on purpose, so the repo doesn't read as more finished than it is:
 
 - There is no full second copy of the NAS outside the NAS. Media and the machine backups exist in one place only.
 - VLANs on the firewall lab and a home automation VM are planned and not started.
+- The AI operator is designed and not built. Its page describes the plan, not a working system.
 
 ## Related
 
